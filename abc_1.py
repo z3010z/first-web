@@ -11,3 +11,8 @@ print(b)
 c = 30
 
 print(c)
+
+
+d = 20
+
+print(d)
