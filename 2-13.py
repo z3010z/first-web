@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import pymongo
+#pip install pymongo
 
 article = []
 last_page_link = ""
@@ -15,15 +16,16 @@ else :
 def capData() :
     r = requests.get("https://www.ptt.cc/bbs/MobileComm/index.html")
     
-    # global time
+    global time
     #在def裡，需要告訴這是def外的全域變數
     while time > 0:
         
         soup = BeautifulSoup(r.text,"html.parser")
         index_soup = soup.select("div.title a")
+        #首頁的第一個標題 EX:[購機] 智慧手環推薦
 
         last_page_soup = soup.select("a.btn")
-
+        #上一頁
 
         for l in last_page_soup:
             if "‹ 上頁" == l.text  :
@@ -47,9 +49,10 @@ def capData() :
         #print(len(article_link))
 
 def saveToDB() :
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    # myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb+srv://jasonyaya:jasonyaya@cluster0.rjbp5vy.mongodb.net")
 
-    mydb = myclient["ptt"]
+    mydb = myclient["fk"]
 
     mycol = mydb["mobel"]
     

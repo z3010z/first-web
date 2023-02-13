@@ -12,6 +12,5 @@ sel = soup.select("div.m-ent")
 print(sel)
 
 for s in sel:
-    print(s.text)
+    print(s["href"],"  -  ", s.text)
     print("~~~~")
-    # ,"  -  ", s.text
